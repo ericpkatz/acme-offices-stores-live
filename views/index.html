@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <link rel='stylesheet' href='/vendor/bootstrap/dist/css/bootstrap.css' />
+    <script src='./dist/bundle.js' defer ></script>
+  </head>
+  <body>
+    <div class='container'>
+      <h1>Offices Stores Live</h1>
+      <div class='row'>
+        <div class='col-xs-6'>
+          <form class='well picker' data-item-type='offices'>
+            <div class='form-group'>
+              <select class='form-control'>
+                {% for item in offices %}
+                <option value='{{ item.id }}'>{{ item.name }} ({{ item.place.name }})</option>
+                {% endfor %}
+              </select>
+            </div>
+            <button class='btn btn-primary'>Add</button>
+          </form>
+          <form class='well picker' data-item-type='stores'>
+            <div class='form-group'>
+              <select class='form-control'>
+                {% for item in stores %}
+                <option value='{{ item.id }}'>{{ item.name }} ({{ item.place.name }})</option>
+                {% endfor %}
+              </select>
+            </div>
+            <button class='btn btn-primary'>Add</button>
+          </form>
+        </div>
+        <div class='col-xs-6'>
+          <div id='dayPicker'>
+          </div>
+          <div id='dayViewer'>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var offices = {{ offices | raw | json }};
+      var stores = {{ stores | raw | json }};
+    </script>
+  </body>
+</html>
